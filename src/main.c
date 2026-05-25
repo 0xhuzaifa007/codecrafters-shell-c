@@ -14,17 +14,18 @@ int main(int argc, char *argv[]) {
     //scanf("%s", command);
     fgets(command,sizeof(command), stdin);
     command[strlen(command) - 1 ] = '\0';
+    char *token = strtok(command, " ");
     //printf("%s\n", command);
     if ( strcmp(command,"exit") == 0){
       return 0;
     }
-    if (strcmp(command,"echo") == 0){
-      //printf("Enter\n");
+    
+    else if (strcmp(command,"echo") == 0){
+      printf("%s\n",strtok(NULL,""));
     }
-    printf("%s: command not found\n", command);
-  } 
-   
-   
-
+    else {
+      printf("%s: command not found\n", command);
+    } 
+}
   return 0;
 }
