@@ -11,9 +11,15 @@ int main(int argc, char *argv[]) {
  
   while (1){
     printf("$ ");
-    scanf("%s", command);
+    //scanf("%s", command);
+    fgets(command,sizeof(command), stdin);
+    command[strlen(command) - 1 ] = '\0';
+    //printf("%s\n", command);
     if ( strcmp(command,"exit") == 0){
       return 0;
+    }
+    if (strcmp(command,"echo") == 0){
+      //printf("Enter\n");
     }
     printf("%s: command not found\n", command);
   } 
