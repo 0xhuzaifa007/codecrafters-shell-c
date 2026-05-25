@@ -7,6 +7,10 @@ int main(int argc, char *argv[]) {
 
   // TODO: Uncomment the code below to pass the first stage
    printf("$ ");
+   
+   char command[30];
+   scanf("%s", command);
+   printf("%s: command not found\n", command);
 
   return 0;
 }
