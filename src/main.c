@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
               printf("%s is a shell builtin\n", token2);
            }
       else {
-        printf("%s: command not found\n", token2);
+        printf("%s: not found\n", token2);
       }
     }
 
