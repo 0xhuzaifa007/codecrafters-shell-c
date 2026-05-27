@@ -23,6 +23,21 @@ int main(int argc, char *argv[]) {
     else if (strcmp(command,"echo") == 0){
       printf("%s\n",strtok(NULL,""));
     }
+
+    else if (strcmp(command, "type") == 0){
+      char *token2 = strtok(NULL,"");    
+      //printf("%s is a shell command\n", token2);
+      if (token2 != NULL && strcmp(token2,"echo") == 0 ||
+                            strcmp(token2,"exit") == 0 ||
+                            strcmp(token2,"type") == 0 )
+{
+              printf("%s is a shell command\n", token2);
+           }
+      else {
+        printf("%s: command not found\n", token2);
+      }
+    }
+
     else {
       printf("%s: command not found\n", command);
     } 
