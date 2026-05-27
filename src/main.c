@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
   setbuf(stdout, NULL);
 
   // TODO: Uncomment the code below to pass the first stage
-  char command[30]; 
+  char command[256]; 
   char *path = getenv("PATH");
   // if (path != NULL){
   //   printf("%s", path);
@@ -41,13 +41,13 @@ int main(int argc, char *argv[]) {
     else if (strcmp(command, "type") == 0){
       char *token2 = strtok(NULL,"");    
       char *file_path = strtok(path_copy, ":");
-      
       if (token2 != NULL && strcmp(token2,"echo") == 0 ||
                             strcmp(token2,"exit") == 0 ||
                             strcmp(token2,"type") == 0 ){
               printf("%s is a shell builtin\n", token2);
            }
       else {
+
         int flag = 0;
         while(file_path != NULL){
         //printf("PATH: %s\n",file_path);
