@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
                             strcmp(token2,"exit") == 0 ||
                             strcmp(token2,"type") == 0 )
 {
-              printf("%s is a shell command\n", token2);
+              printf("%s is a shell builtin\n", token2);
            }
       else {
         printf("%s: command not found\n", token2);
