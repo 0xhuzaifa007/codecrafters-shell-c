@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
       else {
         int flag = 0;
         while(file_path != NULL){
-        printf("PATH: %s\n",file_path);
+        //printf("PATH: %s\n",file_path);
         char file[256];
         sprintf(file,"%s/%s" ,file_path,token2);
         //printf("PATH: %s is %s\n",token2,file);
