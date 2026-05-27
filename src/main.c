@@ -27,6 +27,8 @@ int main(int argc, char *argv[]) {
     fgets(command,sizeof(command), stdin);
     command[strlen(command) - 1 ] = '\0';
     char *token = strtok(command, " ");
+    char *path_copy = strdup(path);
+
     //printf("%s\n", command);
     if ( strcmp(command,"exit") == 0){
       return 0;
@@ -38,7 +40,7 @@ int main(int argc, char *argv[]) {
 
     else if (strcmp(command, "type") == 0){
       char *token2 = strtok(NULL,"");    
-      char *file_path = strtok(path, ":");
+      char *file_path = strtok(path_copy, ":");
       
       if (token2 != NULL && strcmp(token2,"echo") == 0 ||
                             strcmp(token2,"exit") == 0 ||
@@ -48,10 +50,10 @@ int main(int argc, char *argv[]) {
       else {
         int flag = 0;
         while(file_path != NULL){
-        //printf("PATH: %s\n",file_path);
+        printf("PATH: %s\n",file_path);
         char file[256];
         sprintf(file,"%s/%s" ,file_path,token2);
-        //printf("%s is %s\n",token2,file);
+        //printf("PATH: %s is %s\n",token2,file);
         if (access(file,F_OK) == 0){
           if (access(file,X_OK) == 0){
             printf("%s is %s\n",token2,file);
@@ -67,7 +69,8 @@ int main(int argc, char *argv[]) {
 
     else {
       printf("%s: command not found\n", command);
-    } 
+    }
+    free(path_copy);
 }
   return 0;
 }
