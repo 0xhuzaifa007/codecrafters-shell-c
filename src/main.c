@@ -1,6 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
+
+
+#ifdef _WIN32
+#define PATH_LIST_SEPARATOR ';'
+#else
+#define PATH_LIST_SEPARATOR ':'
+#endif
 
 int main(int argc, char *argv[]) {
   // Flush after every printf
@@ -8,7 +16,11 @@ int main(int argc, char *argv[]) {
 
   // TODO: Uncomment the code below to pass the first stage
   char command[30]; 
- 
+  char *path = getenv("PATH");
+  // if (path != NULL){
+  //   printf("%s", path);
+  // }
+
   while (1){
     printf("$ ");
     //scanf("%s", command);
@@ -26,15 +38,30 @@ int main(int argc, char *argv[]) {
 
     else if (strcmp(command, "type") == 0){
       char *token2 = strtok(NULL,"");    
-      //printf("%s is a shell command\n", token2);
+      char *file_path = strtok(path, ":");
+      
       if (token2 != NULL && strcmp(token2,"echo") == 0 ||
                             strcmp(token2,"exit") == 0 ||
-                            strcmp(token2,"type") == 0 )
-{
+                            strcmp(token2,"type") == 0 ){
               printf("%s is a shell builtin\n", token2);
            }
       else {
-        printf("%s: not found\n", token2);
+        int flag = 0;
+        while(file_path != NULL){
+        //printf("PATH: %s\n",file_path);
+        char file[256];
+        sprintf(file,"%s/%s" ,file_path,token2);
+        //printf("%s is %s\n",token2,file);
+        if (access(file,F_OK) == 0){
+          if (access(file,X_OK) == 0){
+            printf("%s is %s\n",token2,file);
+            flag = 1; 
+            break;
+          }
+        }
+        file_path = strtok(NULL,":");
+      }
+        if (!flag){printf("%s: not found\n", token2);}
       }
     }
 
