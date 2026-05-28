@@ -36,11 +36,9 @@ void execute_command(char *command, char *path){
   int executable = 0;
 
     
-    if (strcmp(command,"echo") == 0){
-      printf("%s\n",strtok(NULL,""));
-    }
+    
 
-    else if (strcmp(command, "type") == 0){
+    if (strcmp(command, "type") == 0){
       char *token2 = strtok(NULL,"");    
       char *file_path = strtok(path_copy, ":");
       if (token2 != NULL && strcmp(token2,"echo") == 0 ||
@@ -88,6 +86,9 @@ int main(int argc, char *argv[]) {
     
     if ( strcmp(command,"exit") == 0){
       return 0;
+    }
+    if (strcmp(command,"echo") == 0){
+      printf("%s\n",strtok(NULL,""));
     }
     //printf("%s\n", command);
     execute_command(command, path);
